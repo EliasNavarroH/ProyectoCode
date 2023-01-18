@@ -1,0 +1,14 @@
+{% extends "AppCoder/base.html" %}
+
+{% block contenido %}
+<section>
+  <div>
+    <h1>Lista de profesores</h1>
+    <ul>
+      {% for prof in profesores %}
+      <li>{{prof.nombre}},{{prof.apellido}}</li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endblock contenido %}

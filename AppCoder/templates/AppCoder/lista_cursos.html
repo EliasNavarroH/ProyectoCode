@@ -1,0 +1,14 @@
+{% extends "AppCoder/base.html" %}
+
+{% block contenido %}
+<section>
+  <div>
+    <h1>Lista de cursos</h1>
+    <ul>
+      {% for cur in cursos %}
+      <li>{{cur.nombre}},{{cur.camada}}</li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endblock contenido %}

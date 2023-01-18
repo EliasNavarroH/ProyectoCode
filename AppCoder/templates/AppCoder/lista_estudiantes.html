@@ -1,0 +1,17 @@
+{% extends "AppCoder/base.html" %}
+
+{% block subtitulo %} Lista de Estudiantes {% endblock subtitulo %}
+
+
+{% block contenido %}
+<section>
+  <div>
+    <h1>Lista de estudiantes</h1>
+    <ul>
+    {% for student in estudiantes %}
+      <li>{{ student.nombre }}, {{student.apellido}}</li>
+    {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endblock contenido %}
