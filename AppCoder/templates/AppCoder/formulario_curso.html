@@ -1,0 +1,14 @@
+{% extends 'AppCoder/base.html' %}
+ 
+
+{%block subtitulo%} Bienvenido a CoderApp {%endblock subtitulo%}
+
+{% block contenido%}
+<form action="{% url 'crear_curso' %}" metod="post">
+    <p>Nombre del curso:</p>
+    <input type="text" name="nombre">
+    <p>Comision:</p>
+    <input type="number" name="comision">
+    <input type="submit" value="Enviar">
+</form>
+{% endblock contenido%}
