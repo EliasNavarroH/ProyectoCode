@@ -4,6 +4,7 @@
 <section>
   <div>
     <h1>Lista de cursos</h1>
+    <a href="{%url 'crear_curso' %}">Añadir curso</a> 
     <ul>
       {% for cur in cursos %}
       <li>{{cur.nombre}},{{cur.camada}}</li>
