@@ -66,4 +66,22 @@ def crear_curso(request):
          context={'formulario':formulario},
     )
 
-     
+
+def  buscar_curso(request):
+    if request.method == "POST":
+        data = request.POST
+        cursos = Curso.objects.filter(nombre__contains=data['nombre'])
+        contexto = {
+            'cursos':cursos
+        }
+        return render(
+            request=request,
+            template_name='AppCoder/lista_cursos.html',
+            context= contexto,
+        )
+    else: #GET
+        return render(
+            request=request,
+            template_name='AppCoder/busqueda_curso.html',
+        )
+
