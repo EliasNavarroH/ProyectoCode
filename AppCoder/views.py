@@ -50,7 +50,7 @@ def listar_curso(request):
     )
 
 def crear_curso(request):
-    if request.method == "POST":
+    if request.method == "POST": # cuando es post y el form es valido, se crea el formulario y se redirecciona a la url exitosa
         formulario = CursoFormulario(request.POST)
         if formulario.is_valid():
             data = formulario.cleaned_data
