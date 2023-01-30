@@ -10,7 +10,7 @@ urlpatterns = [
     path('', inicio, name="inicio"),
     path('admin/', admin.site.urls),
     path('curso', listar_curso, name="listar_curso"),
-    path('enviar-curso', crear_curso, name="formulario_curso"),
+    path('enviar-curso', crear_curso, name="crear_curso"),
          
 ]
  

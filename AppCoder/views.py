@@ -51,13 +51,15 @@ def listar_curso(request):
 def crear_curso(request):
     if request.method == "POST":
         data = request.POST
-        curso = Curso(nombre=data['nombre'], camada=data['camada'] )
+        curso = Curso(nombre=data['nombre'], camada=data['camada'])
         curso.save()
-        url_exitosa = reverse('listar_curso')
+        url_exitosa = reverse ('listar_curso')
         return redirect(url_exitosa)
+
     else: #GET
        return render(
         request=request,
         template_name='AppCoder/formulario_curso.html'
-       )
-    
+        )
+
+     
