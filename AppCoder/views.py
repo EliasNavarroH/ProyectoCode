@@ -37,6 +37,8 @@ def listar_profesores(request):
     template_name='AppCoder/lista_profesores.html',
     context=contexto1,
     )
+
+
 def listar_curso(request):
 
     contexto1= {
@@ -48,6 +50,20 @@ def listar_curso(request):
     template_name='AppCoder/lista_cursos.html',
     context=contexto1,
     )
+
+
+def ver_curso(request, id):
+    curso = Curso.objects.get(id=id)
+    contexto1= {
+        'cursos': curso
+
+    } 
+    return render(
+    request=request, 
+    template_name='AppCoder/detalle_curso.html',
+    context=contexto1,
+    )
+
 
 def crear_curso(request):
     if request.method == "POST": # cuando es post y el form es valido, se crea el formulario y se redirecciona a la url exitosa
@@ -70,7 +86,7 @@ def crear_curso(request):
 def  buscar_curso(request):
     if request.method == "POST":
         data = request.POST
-        cursos = Curso.objects.filter(nombre__contains=data['nombre'])
+        cursos = Curso.objects.filter(nombre__contains=data['nombre'],)
         contexto = {
             'cursos':cursos
         }
@@ -79,9 +95,4 @@ def  buscar_curso(request):
             template_name='AppCoder/lista_cursos.html',
             context= contexto,
         )
-    else: #GET
-        return render(
-            request=request,
-            template_name='AppCoder/busqueda_curso.html',
-        )
-
+   

@@ -3,6 +3,7 @@ from django.db import models
 class Curso(models.Model):
     nombre = models.CharField(max_length=64)
     camada = models.IntegerField(default=0)
+    descripcion = models.TextField(null=True)
     def __str__(self):
         return f"{self.camada}, {self.nombre}"
 

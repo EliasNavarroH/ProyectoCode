@@ -4,13 +4,39 @@
 <section>
   <div>
     <h1>Lista de cursos</h1>
+
+    <form action="{% url 'buscar_curso' %}" method="post">
+      {% csrf_token %} 
+      <p></p>
+      <input type="text" name="nombre">
+      <input type="submit" value="Buscar">
+   </form>
+   <br>
+
+   <table class=table>
+    <tbody>
+      <tr>
+         <th>Nombre</th>
+         <th>Camada</th>
+         <th>Ver</th>
+         <th>Editar</th>
+         <th>Eliminar</th>
+     </tr>
+     {% for cur in cursos %}
+     <tr>
+       <td>{{cur.nombre}}</td>
+       <td>{{cur.camada}}</td>
+       <td>Ver</td>
+       <td>Editar</td>
+       <td>Eliminar</td> 
+     </tr>
+     {% endfor %}
+     <tr></tr>
+    </tbody>
+   </table>
+    <br>
+
     <a href="{%url 'crear_curso' %}">Añadir</a> 
-    <a href="{%url 'buscar_curso' %}">Buscar</a> 
-    <ul>
-      {% for cur in cursos %}
-      <li>{{cur.nombre}},{{cur.camada}}</li>
-      {% endfor %}
-    </ul>
   </div>
 </section>
 {% endblock contenido %}
