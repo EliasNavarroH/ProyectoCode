@@ -70,7 +70,7 @@ def crear_curso(request):
         formulario = CursoFormulario(request.POST)
         if formulario.is_valid():
             data = formulario.cleaned_data
-            curso = Curso(nombre=data['nombre'], camada=data['camada'])
+            curso = Curso(nombre=data['nombre'], camada=data['camada'], descripcion=data['descripcion'])
             curso.save()
             url_exitosa = reverse ('listar_curso')
             return redirect(url_exitosa)

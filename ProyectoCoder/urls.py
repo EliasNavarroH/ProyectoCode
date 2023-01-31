@@ -13,7 +13,4 @@ urlpatterns = [
     path('enviar-curso/', crear_curso, name="crear_curso"),
     path('buscar-curso/', buscar_curso, name="buscar_curso"),
     path('curso/<int:id>/', ver_curso, name="ver_curso"),
-
-         
 ]
- 
