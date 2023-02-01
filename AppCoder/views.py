@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.db.models import Q
 from django.urls import reverse
 from django.http import HttpResponse
 from datetime import datetime
@@ -53,7 +54,7 @@ def listar_curso(request):
 
 
 def ver_curso(request, id):
-    curso = Curso.objects.get(camada=id)
+    curso = Curso.objects.get(id=id)
     contexto1= {
         'curso': curso
 
@@ -83,16 +84,17 @@ def crear_curso(request):
     )
 
 
-def  buscar_curso(request):
+def buscar_curso(request):
     if request.method == "POST":
         data = request.POST
-        cursos = Curso.objects.filter(nombre__contains=data['nombre'],)
+        cursos = Curso.objects.filter(
+            Q(nombre__contains=data['nombre']) | Q(camada__exact=['camada'])
+        )
         contexto = {
-            'cursos':cursos
+            'cursos': cursos
         }
         return render(
             request=request,
             template_name='AppCoder/lista_cursos.html',
-            context= contexto,
+            context=contexto,
         )
-   
