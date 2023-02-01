@@ -26,7 +26,9 @@
      <tr>
        <td>{{cur.nombre}}</td>
        <td>{{cur.camada}}</td>
-       <td>Ver</td>
+       <td>
+        <a href="{% url 'ver_curso' curso.id %}">Ver</a>
+       </td>
        <td>Editar</td>
        <td>Eliminar</td> 
      </tr>

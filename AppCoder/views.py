@@ -53,9 +53,9 @@ def listar_curso(request):
 
 
 def ver_curso(request, id):
-    curso = Curso.objects.get(id=id)
+    curso = Curso.objects.get(camada=id)
     contexto1= {
-        'cursos': curso
+        'curso': curso
 
     } 
     return render(
