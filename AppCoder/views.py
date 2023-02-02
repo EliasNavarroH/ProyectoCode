@@ -114,7 +114,7 @@ def editar_curso(request, id):
 def buscar_curso(request):
     if request.method == "POST":
         data = request.POST
-        cursos = Curso.objects.filter(nombre__contains=data['busqueda'], camada__contains=data['camada'])
+        cursos = Curso.objects.filter(nombre__contains=data['nombre'])
         contexto = {
             'cursos': cursos
         }
