@@ -1,7 +1,9 @@
 from django.urls import path
 from django.contrib import admin
 
-from AppCoder.views import inicio, listar_estudiantes, listar_profesores, listar_curso, crear_curso, buscar_curso, ver_curso
+from AppCoder.views import (inicio, listar_estudiantes, listar_profesores, listar_curso, crear_curso, buscar_curso, ver_curso,
+                            editar_curso
+)
 
 
 urlpatterns = [
@@ -13,4 +15,5 @@ urlpatterns = [
     path('enviar-curso/', crear_curso, name="crear_curso"),
     path('buscar-curso/', buscar_curso, name="buscar_curso"),
     path('curso/<int:id>/', ver_curso, name="ver_curso"),
+    path('editar-curso/<int:id>/', editar_curso, name="editar_curso"),
 ]

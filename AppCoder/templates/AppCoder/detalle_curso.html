@@ -1,10 +1,17 @@
 {% extends 'AppCoder/base.html' %}
 
-{%block subtitulo %} Info del curso {% endblock subtitulo%}
-
 {% block contenido %}
-<h1>{{curso.nombre}}</h1>
-<h1>{{curso.camada}}</h1>
-<h1>{{curso.descripcion}}</h1>
+<h2>{{curso.nombre}}</h1>
+<span>
+ <b>Camada:</b>   {{curso.camada}}
+</span>
+<br>
+{% if curso.descripcion %}
+<span>
+ <b>Descripcion:</b>   {{curso.descripcion}}
+</span>
+{% endif %}
+<br>
+<a href="{% url 'listar_curso' %}">Lista Cursos</a>
 {% endblock contenido %}
 

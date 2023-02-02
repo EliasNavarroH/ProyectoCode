@@ -84,12 +84,37 @@ def crear_curso(request):
     )
 
 
+def editar_curso(request, id):
+    curso= Curso.objects.get(id=id)
+    if request.method == "POST": 
+        formulario = CursoFormulario(request.POST)
+        if formulario.is_valid():
+            data = formulario.cleaned_data
+            curso.nombre = data['nombre']
+            curso.camada = data['camada']
+            curso.descripcion = data['descripcion']
+            curso.save()
+            url_exitosa = reverse ('listar_curso')
+            return redirect(url_exitosa)
+    else: #GET
+        incial = {
+            'nombre': curso.nombre,
+            'camada': curso.camada,
+            'descripcion': curso.descripcion,
+        }
+        formulario = CursoFormulario(initial=incial,)
+    return render(
+         request=request,
+         template_name='AppCoder/formulario_curso.html',
+         context={'formulario':formulario, 'curso':curso, 'es_update':True},
+    )
+
+
+
 def buscar_curso(request):
     if request.method == "POST":
         data = request.POST
-        cursos = Curso.objects.filter(
-            Q(nombre__contains=data['nombre']) | Q(camada__exact=['camada'])
-        )
+        cursos = Curso.objects.filter(nombre__contains=data['busqueda'], camada__contains=data['camada'])
         contexto = {
             'cursos': cursos
         }
