@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.db.models import Q
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.http import HttpResponse
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from datetime import datetime
 
 from AppCoder.models import Estudiante, Profesor, Curso
@@ -16,7 +17,7 @@ def inicio(request):
     )
 
 
-def listar_estudiantes(request):
+#def listar_estudiantes(request):
     contexto = {
         'estudiantes': Estudiante.objects.all()
      }
@@ -43,14 +44,14 @@ def listar_profesores(request):
 def listar_curso(request):
 
     contexto1= {
-        'cursos': Curso.objects.all()
+       'cursos': Curso.objects.all()
 
     } 
     return render(
     request=request, 
     template_name='AppCoder/lista_cursos.html',
     context=contexto1,
-    )
+  )
 
 
 def ver_curso(request, id):
@@ -110,6 +111,15 @@ def editar_curso(request, id):
     )
 
 
+def eliminar_curso(request, id):
+    curso= Curso.objects.get(id=id)
+    if request.method == "POST": 
+       curso.delete()
+       url_exitosa = reverse ('listar_curso')
+       return redirect(url_exitosa)
+
+
+
 
 def buscar_curso(request):
     if request.method == "POST":
@@ -123,3 +133,33 @@ def buscar_curso(request):
             template_name='AppCoder/lista_cursos.html',
             context=contexto,
         )
+
+
+class EstudiantesListView(ListView):
+    model=Estudiante
+    fields = ['nombre', 'apellido','dni','email']
+    success_url = reverse_lazy('AppCoder/lista_cursos.html')
+
+
+class EstudiantesCreateView(CreateView):
+    model=Estudiante
+    fields = ['nombre', 'apellido','dni','email']
+    success_url = reverse_lazy('AppCoder/lista_estudiantes.html')
+
+
+class EstudiantesUpdateView(UpdateView):
+    model=Estudiante
+    fields = ['nombre', 'apellido','dni','email']
+    success_url = reverse_lazy('AppCoder/lista_estudiantes.html')
+
+class EstudiantesDetailView(DetailView):
+    model=Estudiante
+    fields = ['nombre', 'apellido','dni','email']
+    success_url = reverse_lazy('AppCoder/lista_estudiantes.html')
+
+
+class EstudiantesDeleteView(DeleteView):
+    model=Estudiante
+    fields = ['nombre', 'apellido','dni','email']
+    success_url = reverse_lazy('AppCoder/lista_estudiantes.html')
+

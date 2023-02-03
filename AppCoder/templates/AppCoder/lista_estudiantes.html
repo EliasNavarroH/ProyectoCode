@@ -1,14 +1,29 @@
 {% extends "AppCoder/base.html" %}
 
 {% block contenido %}
-<section>
+
   <div>
     <h1>Lista de estudiantes</h1>
-    <ul>
-    {% for student in estudiantes %}
-      <li>{{ student.nombre }}, {{student.apellido}}</li>
-    {% endfor %}
-    </ul>
-  </div>
-</section>
+    <table class="table">
+      <tbody>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <td>Ver</td>
+          <td>Editar</td>
+          <td>Eliminar</td>
+        </tr>
+        {% for estudiantes in object_list %}
+        <tr>
+          <td>{{ estudiantes.nombre }}</td>
+          <td>{{ estudiantes.apellido }}</td>
+          <td>Ver</td>
+          <td>Editar</td>
+          <td>Eliminar</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    
+
 {% endblock contenido %}

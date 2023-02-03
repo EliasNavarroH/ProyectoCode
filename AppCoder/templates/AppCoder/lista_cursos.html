@@ -24,15 +24,28 @@
      </tr>
      {% for cur in cursos %}
      <tr>
-       <td>{{cur.nombre}}</td>
-       <td>{{cur.camada}}</td>
-       <td><a href="{%url 'ver_curso' cur.pk %}"> 
-        Ver
-      </a></td>
-       <td>
-       <a href="{% url 'editar_curso' cur.pk %}">Editar</a> 
+
+      <td>{{cur.nombre}}</td>
+      <td>{{cur.camada}}</td>
+      <td>
+        <a href="{%url 'ver_curso' cur.pk %}">
+          Ver
+        </a>
       </td>
-       <td>Eliminar</td> 
+
+      <td>
+       <a href="{% url 'editar_curso' cur.pk %}">
+        Editar
+      </a> 
+      </td>
+
+       <td>
+        <form action="{% url 'eliminar_curso' cur.pk%}" method="post">
+          {% csrf_token %}
+          <input type="submit" value="Eliminar">
+        </form>
+      </td> 
+
      </tr>
      {% endfor %}
      <tr></tr>
